@@ -8,23 +8,16 @@
     <meta name="theme-color" content="">
 
     <link rel="preload" href="/main.js" as="script">
-    <link rel="preload" href="/main.css" as="style" id="main-css">
+    <link rel="preload" href="/main.css" as="style">
 
     <style id="default-style">
-      <%= require('!raw-loader!boot/boot.css') %>
+      <%= require('!raw-loader!styles/boot.css') %>
     </style>
-
-    <script src="/main.js" defer></script>
-    <script>
-      // App boot
-      (function() {
-        <%= require('!!raw-loader!boot/boot.js') %>
-        // Not strict mode so `this` is window and okay to include the library
-        <%= require('!!raw-loader!boot/loadCSS.js') %>
-      }());
-    </script>
   </head>
   <body>
     <div id="app"></div>
+
+    <link rel="stylesheet" href="/main.css">
+    <script src="/main.js"></script>
   </body>
 </html>

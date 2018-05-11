@@ -15,12 +15,15 @@ export function addModel({ state, reducers, effects, name }) {
   }
 
   store.model({
-    state, reducers, effects, name
+    state,
+    reducers,
+    effects,
+    name,
   });
 
   // const model = store.dispatch[name];
-  const mapDispatch = (dispatch) => ({ actions: dispatch[name] });
-  const mapState = (state) => ({ model: state[name] });
+  const mapDispatch = dispatch => ({ actions: dispatch[name] });
+  const mapState = state => ({ model: state[name] });
 
   return {
     name: name,
@@ -31,24 +34,27 @@ export function addModel({ state, reducers, effects, name }) {
     },
 
     connectWith: (stateToProps, dispatchToProps) => {
-      return connect(wrapMapFn((state, ownProps) => {
-        return {
-          ...mapState(state),
-          ...stateToProps(state, ownProps),
-        };
-      }), wrapMapFn((dispatch, ownProps) => {
-        return {
-          ...mapDispatch(dispatch),
-          ...dispatchToProps(dispatch, ownProps)
-        };
-      }))
+      return connect(
+        wrapMapFn((state, ownProps) => {
+          return {
+            ...mapState(state),
+            ...stateToProps(state, ownProps),
+          };
+        }),
+        wrapMapFn((dispatch, ownProps) => {
+          return {
+            ...mapDispatch(dispatch),
+            ...dispatchToProps(dispatch, ownProps),
+          };
+        })
+      );
     },
   };
 }
 
 function wrapMapFn(fn) {
   if (fn.length <= 1) {
-    return (thing) => fn(thing);
+    return thing => fn(thing);
   } else {
     return (thing, ownProps) => fn(thing, ownProps);
   }
