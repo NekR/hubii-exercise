@@ -1,0 +1,27 @@
+.Box {
+  display: flex;
+}
+
+.Button {
+  border-radius: 0;
+  border: none;
+  background: #e4e4e4;
+  color: black;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.Button[data-selected="true"] {
+  background: #2f89f5;
+  color: white;
+}
+
+.Button:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.Button:last-child {
+  border-radius: 0 4px 4px 0;
+}

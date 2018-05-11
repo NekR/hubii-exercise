@@ -1,0 +1,46 @@
+html {
+  overflow-y: auto;
+  -ms-overflow-style: scrollbar;
+}
+
+/* IE10 snapmode fix */
+@media screen and (-ms-view-state: snapped) {
+  @-ms-viewport { width: device-width }
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1;
+  font-size: 16px;
+  overflow: visible;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: scrollbar;
+
+  color: #333;
+  background: #f2f2f2;
+
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+
+  /* Comment this if not needed */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body, input, textarea, select, button {
+  font-family: 'Roboto', 'Myriad Pro', 'Fira Sans', 'Droid Sans', 'Gill Sans Nova', 'Helvetica Neue', 'Trebuchet MS', Helvetica, Arial, sans-serif;
+}
+
+#app {
+  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}

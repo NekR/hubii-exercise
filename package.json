@@ -1,0 +1,71 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "NODE_ENV=development webpack",
+    "watch": "NODE_ENV=development webpack --watch",
+    "build:production": "NODE_ENV=production webpack",
+    "build:analyze": "NODE_ENV=production webpack --env.analyze",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ./dist -p 9696 -c no-store",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.46",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.46",
+    "@babel/plugin-transform-react-jsx": "^7.0.0-beta.46",
+    "@babel/plugin-transform-regenerator": "^7.0.0-beta.46",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "@babel/runtime": "^7.0.0-beta.46",
+    "@nekr/css-components": "git+https://github.com/NekR/css-components.git",
+    "autoprefixer": "^8.0.0",
+    "babel-eslint": "~8.2.2",
+    "babel-loader": "8.0.0-beta.0",
+    "clean-webpack-plugin": "~0.1.18",
+    "copy-webpack-plugin": "~4.4.1",
+    "css-loader": "~0.28.9",
+    "eslint": "~4.18.0",
+    "eslint-plugin-babel": "~4.1.2",
+    "eslint-plugin-react": "~7.6.1",
+    "file-loader": "~1.1.6",
+    "html-webpack-plugin": "~2.30.1",
+    "husky": "~0.14.3",
+    "lint-staged": "~7.0.0",
+    "postcss-conditionals": "^2.1.0",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.1",
+    "postcss-mixins": "^6.2.0",
+    "postcss-simple-vars": "^4.1.0",
+    "prettier": "~1.10.2",
+    "script-loader": "~0.7.2",
+    "style-loader": "~0.20.2",
+    "svg-react-loader": "~0.4.5",
+    "svg-url-loader": "^2.3.1",
+    "url-loader": "~0.6.2",
+    "webpack": "^3.11.0",
+    "webpack-bundle-analyzer": "~2.10.0",
+    "webpack-stylish": "~0.1.6"
+  },
+  "dependencies": {
+    "@rematch/core": "^1.0.0-alpha.4",
+    "promise-polyfill": "~7.1.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "whatwg-fetch": "~2.0.3"
+  }
+}

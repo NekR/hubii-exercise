@@ -1,0 +1,47 @@
+.Wrap {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.Box {
+  padding: 4px 8px 0;
+  width: 50px;
+  height: calc(100% - 4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.Wrap:first-child .Box {
+  padding-left: 16px;
+}
+
+.Wrap:last-child .Box {
+  padding-right: 16px;
+}
+
+.Bar {
+  background: linear-gradient(to top, #2368b5 0%, #448ee0 30%, #a0dbef 100%);
+  opacity: 0.7;
+}
+
+.Value {
+  color: black;
+  font-size: 12px;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+
+  margin-top: 12px;
+}
+
+.DateBox {
+  color: black;
+  font-size: 10px;
+  margin-top: 2px;
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 12px;
+}
