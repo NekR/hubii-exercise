@@ -6,12 +6,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const StylishWebpackPlugin = require('webpack-stylish');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const ProvidePlugin = webpack.ProvidePlugin;
 const DefinePlugin = webpack.DefinePlugin;
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-// const ModuleConcatenationPlugin = webpack.optimize.ModuleConcatenationPlugin;
-const ModuleConcatenationPlugin = null;
 
 const postcssImport = require('postcss-import');
 const postcssMixins = require('postcss-mixins');
@@ -51,7 +50,6 @@ const cssLoader = [
 ];
 
 const cssModulesLoader = [
-  '@nekr/css-components/loader',
   {
     loader: 'css-loader',
     options: {
@@ -65,6 +63,8 @@ const cssModulesLoader = [
   },
   postcssLoader,
 ];
+
+const extractTextPlugin = new ExtractTextPlugin('main.css');
 
 const { resolve, join } = require('path');
 
@@ -110,16 +110,16 @@ module.exports = function(env = {}) {
         },
 
         {
-          use: [
-            'style-loader',
-            {
+          use: extractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: {
               loader: 'css-loader',
               options: {
                 import: false,
                 minimize: isProduction,
               },
-            },
-          ],
+            }
+          }),
           test: /\.css$/,
           exclude: [APP_SRC_FOLDER],
         },
@@ -133,7 +133,10 @@ module.exports = function(env = {}) {
             },
             {
               include: [APP_SRC_FOLDER],
-              use: ['style-loader'].concat(cssModulesLoader),
+              use: ['@nekr/css-components/loader'].concat(extractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: cssModulesLoader
+              })),
             }
           ],
         },
@@ -205,12 +208,13 @@ module.exports = function(env = {}) {
         'process.env': {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
         },
+        COIN_API_KEY: JSON.stringify(process.env.COIN_API_KEY || '')
       }),
       new webpack.NamedModulesPlugin(),
       new StylishWebpackPlugin(),
+      extractTextPlugin
     ]
-    .concat(plugins)
-    .concat(ModuleConcatenationPlugin ? new ModuleConcatenationPlugin() : []),
+    .concat(plugins),
 
     resolve: {
       modules: [resolve(APP_SRC_FOLDER), resolve('node_modules')],

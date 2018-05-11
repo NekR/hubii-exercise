@@ -15,7 +15,7 @@ export default addModel({
       try {
         const res = await fetch(url, {
           mode: 'cors',
-          headers: { 'X-CoinAPI-Key': '17C2C3D9-B6BA-48CF-B091-85CC61A66A6D' }
+          headers: { 'X-CoinAPI-Key': COIN_API_KEY }
         });
 
         if (!res.ok) {
