@@ -1,7 +1,6 @@
 import model from './model';
 
 import CurrencyTimeline from 'views/CurrencyTimeline';
-import CurrencyHeader from 'views/CurrencyHeader';
 
 class CurrenciesHistory extends Component {
   componentDidMount() {
@@ -30,11 +29,17 @@ class CurrenciesHistory extends Component {
     const data = this.props.model.data[currency];
     const error = this.props.model.errors[currency];
 
-    return <CurrencyTimeline
-      entries={data}
-      error={error}
-      currency={{ value: currency, items: currencies, onChange: changeCurrency }}
-    />;
+    return (
+      <CurrencyTimeline
+        entries={data}
+        error={error}
+        currency={{
+          value: currency,
+          items: currencies,
+          onChange: changeCurrency,
+        }}
+      />
+    );
   }
 }
 
@@ -43,11 +48,11 @@ class CurrenciesHistory extends Component {
 // export default model.connect()(CurrenciesHistory);
 
 export default model.connectWith(
-  (state) => ({
+  state => ({
     currency: state.global.currency,
     currencies: state.global.currencies,
   }),
-  (dispatch) => ({ changeCurrency: dispatch.global.changeCurrency })
+  dispatch => ({ changeCurrency: dispatch.global.changeCurrency })
 )(CurrenciesHistory);
 
 // model.connectWith() desugars into this:
@@ -63,7 +68,7 @@ export default model.connectWith(
 //   },
 //   (dispatch) => {
 //     return {
-//       actions: dispatch[mode.name],
+//       actions: dispatch[model.name],
 //       changeCurrency: dispatch.global.changeCurrency
 //     };
 //   }
