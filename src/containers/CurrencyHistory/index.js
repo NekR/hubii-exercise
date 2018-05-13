@@ -1,4 +1,4 @@
-import model from './model';
+import model from 'models/currency-history';
 
 import CurrencyTimeline from 'views/CurrencyTimeline';
 

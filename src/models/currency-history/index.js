@@ -15,7 +15,7 @@ export default addModel({
       try {
         const res = await fetch(url, {
           mode: 'cors',
-          headers: { 'X-CoinAPI-Key': COIN_API_KEY }
+          headers: { 'X-CoinAPI-Key': COIN_API_KEY },
         });
 
         if (!res.ok) {
@@ -30,21 +30,21 @@ export default addModel({
       this.setData({
         key,
         data: data && data.reverse(),
-        error: error
+        error: error,
       });
-    }
+    },
   },
   reducers: {
     setData(state, { key, data, error }) {
       return {
         errors: {
-          [key]: error
+          [key]: error,
         },
         data: {
           ...state.data,
-          [key]: data
-        }
+          [key]: data,
+        },
       };
-    }
-  }
+    },
+  },
 });

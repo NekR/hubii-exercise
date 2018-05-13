@@ -16,6 +16,7 @@ module.exports = {
   globals: {
     React: false,
     Component: false,
+    COIN_API_KEY: false,
   },
   plugins: ['react', 'babel'],
   rules: {
