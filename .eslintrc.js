@@ -1,5 +1,5 @@
 module.exports = {
-  "parser": "babel-eslint",
+  parser: 'babel-eslint',
   env: {
     browser: true,
     commonjs: true,
@@ -29,11 +29,11 @@ module.exports = {
     'no-debugger': 0,
     /*semi: [
       'error',
-      // "always"
+      // 'always'
     ],*/
-    "babel/semi": [
+    'babel/semi': [
       'error',
-      // "always"
+      // 'always'
     ]
   },
 };

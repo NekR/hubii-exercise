@@ -1,9 +1,7 @@
 import { init } from '@rematch/core';
 import { connect } from 'react-redux';
 
-import * as models from './models';
-
-const store = init({ models });
+const store = init({});
 
 export default store;
 

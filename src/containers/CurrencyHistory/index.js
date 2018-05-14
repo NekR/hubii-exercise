@@ -1,4 +1,5 @@
 import model from 'models/currency-history';
+import globalModel from 'models/global';
 
 import CurrencyTimeline from 'views/CurrencyTimeline';
 
@@ -49,10 +50,10 @@ class CurrenciesHistory extends Component {
 
 export default model.connectWith(
   state => ({
-    currency: state.global.currency,
-    currencies: state.global.currencies,
+    currency: state[globalModel.name].currency,
+    currencies: state[globalModel.name].currencies,
   }),
-  dispatch => ({ changeCurrency: dispatch.global.changeCurrency })
+  dispatch => ({ changeCurrency: dispatch[globalModel.name].changeCurrency })
 )(CurrenciesHistory);
 
 // model.connectWith() desugars into this:
@@ -62,14 +63,14 @@ export default model.connectWith(
 //   (state) => {
 //     return {
 //       model: state[model.name],
-//       currency: state.global.currency,
-//       currencies: state.global.currencies,
+//       currency: state[globalModel.name].currency,
+//       currencies: state[globalModel.name].currencies,
 //     };
 //   },
 //   (dispatch) => {
 //     return {
 //       actions: dispatch[model.name],
-//       changeCurrency: dispatch.global.changeCurrency
+//       changeCurrency: dispatch[globalModel.name].changeCurrency
 //     };
 //   }
 // )(CurrenciesHistory);
